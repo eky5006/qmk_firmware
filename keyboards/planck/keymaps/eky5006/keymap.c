@@ -35,11 +35,13 @@ enum planck_keycodes {
   DVORAK,
   PLOVER,
   BACKLIT,
-  EXT_PLV
+  EXT_PLV,
+  UTILITY
 };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define UTILITY MO(_UTILITY)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
