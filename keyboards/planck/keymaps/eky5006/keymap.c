@@ -36,7 +36,8 @@ enum planck_keycodes {
   PLOVER,
   BACKLIT,
   EXT_PLV,
-  UTILITY
+  UTILITY,
+  S1, S2, S3, S4, S5, S6, S7, S8, S9
 };
 
 #define LOWER MO(_LOWER)
@@ -174,19 +175,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Utility
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |  7   |  8   |  9   |  /   |      |
+ * |      |  S1  |  S2  |  S3  |      |      |      |  7   |  8   |  9   |  /   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |  4   |  5   |  6   |  *   |      |
+ * |      |  S4  |  S5  |  S6  |      |      |      |  4   |  5   |  6   |  *   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |  1   |  2   |  3   |  -   |Enter |
+ * |      |  S7  |  S8  |  S9  |      |      |      |  1   |  2   |  3   |  -   |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |  0   |  .   |      |  +   |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_UTILITY] = LAYOUT_planck_grid(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8,   KC_KP_9, KC_KP_SLASH,    XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5,   KC_KP_6, KC_KP_ASTERISK, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2,   KC_KP_3, KC_KP_MINUS,    KC_KP_ENTER,
+    XXXXXXX, S1,      S2,      S3,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8,   KC_KP_9, KC_KP_SLASH,    XXXXXXX,
+    XXXXXXX, S4,      S5,      S6,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5,   KC_KP_6, KC_KP_ASTERISK, XXXXXXX,
+    XXXXXXX, S7,      S8,      S9,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2,   KC_KP_3, KC_KP_MINUS,    KC_KP_ENTER,
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_0, KC_KP_DOT, XXXXXXX, KC_KP_PLUS,     XXXXXXX
 )
 
@@ -195,6 +196,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
   float plover_song[][2]     = SONG(PLOVER_SOUND);
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
+  float s1[][2]              = SONG(ODE_TO_JOY);
+  float s2[][2]              = SONG(ROCK_A_BYE_BABY);
+  float s3[][2]              = SONG(CLUEBOARD_SOUND);
+  float s4[][2]              = SONG(GOODBYE_SOUND);
+  float s5[][2]              = SONG(PREONIC_SOUND);
+  float s6[][2]              = SONG(CAMPANELLA);
+  float s7[][2]              = SONG(FANTASIE_IMPROMPTU);
+  float s8[][2]              = SONG(NOCTURNE_OP_9_NO_1);
+  float s9[][2]              = SONG(USSR_ANTHEM);
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -267,6 +277,78 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case S1:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s1);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S2:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s2);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S3:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s3);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S4:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s4);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S5:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s5);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S6:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s6);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S7:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s7);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S8:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s8);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
+    case S9:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+            PLAY_SONG(s9);
+        #endif //AUDIO_ENABLE
+      }
+      return false;
+      break;
   }
   return true;
 }
@@ -312,23 +394,23 @@ void encoder_update(bool clockwise) {
 void dip_switch_update_user(uint8_t index, bool active) {
     switch (index) {
         case 0: {
-#ifdef AUDIO_ENABLE
+          #ifdef AUDIO_ENABLE
             static bool play_sound = false;
-#endif
+          #endif
             if (active) {
-#ifdef AUDIO_ENABLE
+              #ifdef AUDIO_ENABLE
                 if (play_sound) { PLAY_SONG(plover_song); }
-#endif
+              #endif
                 layer_on(_ADJUST);
             } else {
-#ifdef AUDIO_ENABLE
+              #ifdef AUDIO_ENABLE
                 if (play_sound) { PLAY_SONG(plover_gb_song); }
-#endif
+              #endif
                 layer_off(_ADJUST);
             }
-#ifdef AUDIO_ENABLE
+          #ifdef AUDIO_ENABLE
             play_sound = true;
-#endif
+          #endif
             break;
         }
         case 1:
