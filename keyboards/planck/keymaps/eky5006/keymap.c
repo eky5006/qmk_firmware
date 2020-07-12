@@ -175,7 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Utility
  * ,-----------------------------------------------------------------------------------.
- * |      |  S1  |  S2  |  S3  |      |      |      |  7   |  8   |  9   |  /   |      |
+ * |CK_TOG|  S1  |  S2  |  S3  |      |      |      |  7   |  8   |  9   |  /   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |  S4  |  S5  |  S6  |      |      |      |  4   |  5   |  6   |  *   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -185,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_UTILITY] = LAYOUT_planck_grid(
-    XXXXXXX, S1,      S2,      S3,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8,   KC_KP_9, KC_KP_SLASH,    XXXXXXX,
+    CK_TOGG, S1,      S2,      S3,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8,   KC_KP_9, KC_KP_SLASH,    XXXXXXX,
     XXXXXXX, S4,      S5,      S6,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5,   KC_KP_6, KC_KP_ASTERISK, XXXXXXX,
     XXXXXXX, S7,      S8,      S9,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2,   KC_KP_3, KC_KP_MINUS,    KC_KP_ENTER,
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_0, KC_KP_DOT, XXXXXXX, KC_KP_PLUS,     XXXXXXX
@@ -196,14 +196,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
   float plover_song[][2]     = SONG(PLOVER_SOUND);
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-  float s1[][2]              = SONG(ODE_TO_JOY);
-  float s2[][2]              = SONG(ROCK_A_BYE_BABY);
-  float s3[][2]              = SONG(CLUEBOARD_SOUND);
-  float s4[][2]              = SONG(GOODBYE_SOUND);
-  float s5[][2]              = SONG(PREONIC_SOUND);
-  float s6[][2]              = SONG(CAMPANELLA);
-  float s7[][2]              = SONG(FANTASIE_IMPROMPTU);
-  float s8[][2]              = SONG(NOCTURNE_OP_9_NO_1);
+  float s1[][2]              = SONG(MARIO_MUSHROOM);
+  float s2[][2]              = SONG(EYES_ON_ME);
+  float s3[][2]              = SONG(FF_PRELUDE2X);
+  float s4[][2]              = SONG(ISABELLAS_LULLABY);
+  float s5[][2]              = SONG(TERRAS_THEME);
+  float s6[][2]              = SONG(VICTORY_FANFARE_SHORT);
+  float s7[][2]              = SONG(MELODIES_OF_LIFE);
+  float s8[][2]              = SONG(PLATINUM_DISCO);
   float s9[][2]              = SONG(USSR_ANTHEM);
 #endif
 
