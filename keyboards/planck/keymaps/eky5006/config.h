@@ -3,11 +3,6 @@
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(PLANCK_SOUND)
     // #define STARTUP_SONG SONG(NO_SOUND)
-
-    #define DEFAULT_LAYER_SONGS { SONG(QWERTY_SOUND), \
-                                  SONG(COLEMAK_SOUND), \
-                                  SONG(DVORAK_SOUND) \
-                                }
 #endif
 
 /*
@@ -34,7 +29,8 @@
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
 
-// Most tactile encoders have detents every 4 stages
-#define ENCODER_RESOLUTION 4
+// Change Encoder Resolution from 2 from 4
+#define ENCODER_RESOLUTION 2
 #define AUDIO_CLICKY
 #define TAPPING_TERM 200
+#define TAP_CODE_DELAY 10

@@ -9,5 +9,6 @@
   - Original BL Toggle becomes layer access to Utility layer
   - ENTER changes to SFTENT, (Right Shift when held, Enter when tapped)
   - LSFT replaced with tap dance for LSFT on single press, CAPS on double press
+- Replace DVORAK layer with a numpad layer
 - Replace COLEMAK layer with a more standard QWERTY with BCKSPC, ESC, and TAB in typical locations
-- Add Utility layer with access to numpad keys, songs
+- Add Utility layer with access to songs, click toggle
