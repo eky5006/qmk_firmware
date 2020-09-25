@@ -24,7 +24,7 @@ enum planck_layers {
   _NUMPAD,
   _LOWER,
   _RAISE,
-  _PLOVER,
+  _HRGN,
   _ADJUST,
   _UTILITY
 };
@@ -33,7 +33,7 @@ enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   QWERTY2,
   NUMPAD,
-  PLOVER,
+  HRGN,
   EXT_PLV,
   UTILITY,
   S1, S2, S3, S4, S5, S6
@@ -140,22 +140,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT
 ),
 
-/* Plover layer (http://opensteno.org)
+/* Hiragana
  * ,-----------------------------------------------------------------------------------.
- * |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |
+ * |      |  た  |  て  |  い  |  す   |  か  |  ん  |  な  |  に   |  ら  |  せ  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   S  |   T  |   P  |   H  |   *  |   *  |   F  |   P  |   L  |   T  |   D  |
+ * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|QWRTY2|NUMPAD| HRGN |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   S  |   K  |   W  |   R  |   *  |   *  |   R  |   B  |   G  |   S  |   Z  |
+ * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|TermOn|TermOf|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Exit |      |      |   A  |   O  |      |      |   E  |   U  |      |      |      |
+ * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_PLOVER] = LAYOUT_planck_grid(
-    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1   ,
-    XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
-    XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    EXT_PLV, XXXXXXX, XXXXXXX, KC_C,    KC_V,    XXXXXXX, XXXXXXX, KC_N,    KC_M,    XXXXXXX, XXXXXXX, XXXXXXX
+[_HRGN] = LAYOUT_planck_grid(
+    _______, UC(0x305F), UC(0x3066), UC(0x3044), UC(0x3059), UC(0x304B), UC(0x3093), UC(0x306A), UC(0x306B), UC(0x3089), UC(0x305B), _______,
+    _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
+    _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* Adjust (Lower + Raise)
@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |HueTgl| Reset|Debug | RGB  |RGBMOD| HUE+ | HUE- | SAT+ | SAT- |BRGTH+|BRGTH-|  Del |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|QWRTY2|NUMPAD|Plover|      |
+ * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|QWRTY2|NUMPAD| HRGN |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|TermOn|TermOf|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -172,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_planck_grid(
     C(A(KC_LBRC)), RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______,       _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  QWERTY2,  NUMPAD,  PLOVER,  _______,
+    _______,       _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  QWERTY2,  NUMPAD,  HRGN,    _______,
     _______,       MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
     _______,       _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 ),
@@ -253,31 +253,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case PLOVER:
+    case HRGN:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
-          stop_all_notes();
-          PLAY_SONG(plover_song);
+            stop_all_notes();
+            PLAY_SONG(plover_song);
         #endif
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_on(_PLOVER);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
-      break;
-    case EXT_PLV:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(plover_gb_song);
-        #endif
-        layer_off(_PLOVER);
+        layer_move(_HRGN);
       }
       return false;
       break;
