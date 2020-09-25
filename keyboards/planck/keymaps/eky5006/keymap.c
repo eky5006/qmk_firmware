@@ -22,9 +22,9 @@ enum planck_layers {
   _QWERTY,
   _QWERTY2,
   _NUMPAD,
+  _HRGN,
   _LOWER,
   _RAISE,
-  _HRGN,
   _ADJUST,
   _UTILITY
 };
@@ -34,7 +34,6 @@ enum planck_keycodes {
   QWERTY2,
   NUMPAD,
   HRGN,
-  EXT_PLV,
   UTILITY,
   S1, S2, S3, S4, S5, S6
 };
@@ -104,6 +103,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, KC_BSPC, KC_SPC,  _______, KC_KP_0, KC_KP_DOT, KC_KP_PLUS,   XXXXXXX
 ),
 
+/* Hiragana
+ * ,-----------------------------------------------------------------------------------.
+ * |      |  た  |  て  |  い  |  す   |  か  |  ん  |  な  |  に   |  ら  |  せ  |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |  ち  |  と  |  し  |  は   |  き  |  く  |  ま  |  の   |  り  |  れ  |  け  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |  つ  |  さ  |  そ  |  ひ   |  こ  |  み  |  も  |  ね   |  る  |  め  |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_HRGN] = LAYOUT_planck_grid(
+    _______, UC(0x305F), UC(0x3066), UC(0x3044), UC(0x3059), UC(0x304B), UC(0x3093), UC(0x306A), UC(0x306B), UC(0x3089), UC(0x305B), _______,
+    _______, UC(0x3061), UC(0x3068), UC(0x3057), UC(0x306F), UC(0x304D), UC(0x304F), UC(0x307E), UC(0x306E), UC(0x308A), UC(0x308C), UC(0x3051),
+    _______, UC(0x3064), UC(0x3055), UC(0x305D), UC(0x3072), UC(0x3053), UC(0x307F), UC(0x3082), UC(0x306D), UC(0x308B), UC(0x3081), _______,
+    _______, _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______
+),
+
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |      |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |   ~  |
@@ -140,24 +157,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT
 ),
 
-/* Hiragana
- * ,-----------------------------------------------------------------------------------.
- * |      |  た  |  て  |  い  |  す   |  か  |  ん  |  な  |  に   |  ら  |  せ  |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|QWRTY2|NUMPAD| HRGN |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|TermOn|TermOf|      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
- * `-----------------------------------------------------------------------------------'
- */
-[_HRGN] = LAYOUT_planck_grid(
-    _______, UC(0x305F), UC(0x3066), UC(0x3044), UC(0x3059), UC(0x304B), UC(0x3093), UC(0x306A), UC(0x306B), UC(0x3089), UC(0x305B), _______,
-    _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
-    _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-),
-
 /* Adjust (Lower + Raise)
  *                      v------------------------RGB CONTROL--------------------v
  * ,-----------------------------------------------------------------------------------.
@@ -179,20 +178,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Utility
  * ,-----------------------------------------------------------------------------------.
- * |CK_TOG|  S1  |  S2  |  S3  |      |      |      |  7   |  8   |  9   |  /   |      |
+ * |CK_TOG|  S1  |  S2  |  S3  |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  S4  |  S5  |  S6  |      |      |      |  4   |  5   |  6   |  *   |      |
+ * |      |  S4  |  S5  |  S6  |      |      | Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |  1   |  2   |  3   |  -   |Enter |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |  0   |  .   |  +   |      |
+ * |      |      |      |      |      |      |      |      | Prev | Stop | Play | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_UTILITY] = LAYOUT_planck_grid(
-    CK_TOGG, S1,      S2,      S3,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_SLASH,    XXXXXXX,
-    XXXXXXX, S4,      S5,      S6,      XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5, KC_KP_6, KC_KP_ASTERISK, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2, KC_KP_3, KC_KP_MINUS,    KC_KP_ENTER,
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_0, KC_KP_DOT, KC_KP_PLUS,   XXXXXXX
+    CK_TOGG, S1,      S2,      S3,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, S4,      S5,      S6,      XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT
 )
 
 };
