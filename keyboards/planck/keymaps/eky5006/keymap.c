@@ -17,6 +17,9 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
+// For Alt Tab
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
 
 enum planck_layers {
   _QWERTY,
@@ -389,10 +392,16 @@ void encoder_update(bool clockwise) {
       tap_code16(LCTL(KC_PGUP));
     }
   } else if (IS_LAYER_ON(_EXTRA)) {
-    if (clockwise) { // Web browser tab cycling
-      tap_code16(C(A(KC_RCBR)));
+    if (clockwise) { // Alt Tab
+      if (!is_alt_tab_active) {
+        is_alt_tab_active = true;
+        register_code(KC_LALT);
+      }
+      alt_tab_timer = timer_read();
+      tap_code16(KC_TAB);
     } else {
-      tap_code16(C(A(KC_LCBR)));
+      alt_tab_timer = timer_read();
+      tap_code16(S(KC_TAB));
     }
   } else {
     if (clockwise) { // Volume control
@@ -434,25 +443,14 @@ void dip_switch_update_user(uint8_t index, bool active) {
     }
 }
 
+// For Alt Tab. Release Alt if tab hasn't been sent in a second. 
 void matrix_scan_user(void) {
-#ifdef AUDIO_ENABLE
-    if (muse_mode) {
-        if (muse_counter == 0) {
-            uint8_t muse_note = muse_offset + SCALE[muse_clock_pulse()];
-            if (muse_note != last_muse_note) {
-                stop_note(compute_freq_for_midi_note(last_muse_note));
-                play_note(compute_freq_for_midi_note(muse_note), 0xF);
-                last_muse_note = muse_note;
-            }
-        }
-        muse_counter = (muse_counter + 1) % muse_tempo;
-    } else {
-        if (muse_counter) {
-            stop_all_notes();
-            muse_counter = 0;
-        }
+  if (is_alt_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 1250) {
+      unregister_code(KC_LALT);
+      is_alt_tab_active = false;
     }
-#endif
+  }
 }
 
 bool music_mask_user(uint16_t keycode) {
