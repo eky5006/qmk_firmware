@@ -373,7 +373,7 @@ uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
 void encoder_update(bool clockwise) {
-  if (IS_LAYER_ON(_RAISE)) {
+  if (IS_LAYER_ON(_EXTRA)) {
     if (clockwise) { // Custom Global hotkeys for Hue lights
       tap_code16(C(A(KC_RCBR)));
     } else {
@@ -391,7 +391,7 @@ void encoder_update(bool clockwise) {
     } else {
       tap_code16(LCTL(KC_PGUP));
     }
-  } else if (IS_LAYER_ON(_EXTRA)) {
+  } else if (IS_LAYER_ON(_RAISE)) {
     if (clockwise) { // Alt Tab
       if (!is_alt_tab_active) {
         is_alt_tab_active = true;
@@ -446,7 +446,7 @@ void dip_switch_update_user(uint8_t index, bool active) {
 // For Alt Tab. Release Alt if tab hasn't been sent in a second. 
 void matrix_scan_user(void) {
   if (is_alt_tab_active) {
-    if (timer_elapsed(alt_tab_timer) > 1250) {
+    if (timer_elapsed(alt_tab_timer) > 750) {
       unregister_code(KC_LALT);
       is_alt_tab_active = false;
     }
