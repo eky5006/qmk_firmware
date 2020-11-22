@@ -212,14 +212,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      | Prev | Stop | Play | Next |
+ * |      |      |      |      |      |CtlBks|      |      | Prev | Stop | Play | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_UTILITY] = LAYOUT_planck_grid(
-    CK_TOGG, S1,      S2,      S3,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, S4,      S5,      S6,      XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT
+    CK_TOGG, S1,      S2,      S3,      XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, S4,      S5,      S6,      XXXXXXX, XXXXXXX,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_BSPC), XXXXXXX, XXXXXXX, KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT
 ),
 
 /* Extra
