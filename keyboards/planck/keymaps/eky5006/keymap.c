@@ -257,7 +257,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   float s1[][2]              = SONG(MARIO_MUSHROOM);
   float s2[][2]              = SONG(EYES_ON_ME);
   float s3[][2]              = SONG(FF_PRELUDE2X);
-  float s4[][2]              = SONG(USSR_ANTHEM);
+  float s4[][2]              = SONG(SW_VADER);
   float s5[][2]              = SONG(TERRAS_THEME);
   float s6[][2]              = SONG(VICTORY_FANFARE_SHORT);
 #endif

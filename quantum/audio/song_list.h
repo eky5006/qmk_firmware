@@ -182,6 +182,44 @@
     Q__NOTE(_AS5), \
     BD_NOTE(_C6),
 
+#define SW_VADER \
+    B__NOTE(_G3), \
+    Q__NOTE(_REST), \
+    B__NOTE(_G3), \
+    Q__NOTE(_REST), \
+    B__NOTE(_G3), \
+    Q__NOTE(_REST), \
+    WD_NOTE(_DS3), \
+    Q__NOTE(_REST), \
+    Q__NOTE(_AS3), \
+    Q__NOTE(_REST), \
+    B__NOTE(_G3), \
+    Q__NOTE(_REST), \
+    WD_NOTE(_DS3), \
+    Q__NOTE(_REST), \
+    Q__NOTE(_AS3), \
+    Q__NOTE(_REST), \
+    B__NOTE(_G3), \
+    B__NOTE(_REST), \
+    B__NOTE(_D4), \
+    Q__NOTE(_REST), \
+    B__NOTE(_D4), \
+    Q__NOTE(_REST), \
+    B__NOTE(_D4), \
+    Q__NOTE(_REST), \
+    WD_NOTE(_DS4), \
+    Q__NOTE(_REST), \
+    Q__NOTE(_AS3), \
+    Q__NOTE(_REST), \
+    B__NOTE(_FS3), \
+    Q__NOTE(_REST), \
+    WD_NOTE(_DS3), \
+    Q__NOTE(_REST), \
+    Q__NOTE(_AS3), \
+    Q__NOTE(_REST), \
+    B__NOTE(_G3), \
+    Q__NOTE(_REST),
+
 /* Prelude music from Final Fantasy */
 #define FF_PRELUDE \
   M__NOTE(_C3, 20), M__NOTE(_D3, 20), M__NOTE(_E3, 20), M__NOTE(_G3, 20), \
